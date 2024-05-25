@@ -1,0 +1,30 @@
+$item-width: 200px;
+$item-height: 100px;
+$item-duration: 30s;
+
+.item {
+  width: $item-width;
+  height: $item-height;
+  background-color: purple;
+  border-radius: 6px;
+  position: absolute;
+  left: max(calc(200px * 8), 100%);
+
+  @keyframes scrollLeft {
+    to {
+      left: -200px;
+    }
+  }
+
+  animation-name: scrollLeft;
+  animation-duration: $item-duration;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+// Use a loop to generate item classes with animation delays (optional)
+@for $i from 1 to 8 {
+  .item-#{$i} {
+    animation-delay: calc(#{$item-duration} / 8 * (8 - #{$i}) * -1);
+  }
+}
